@@ -1,0 +1,13 @@
+<%- include("header") -%>
+
+<div class="grid" data-masonry='{"percentPosition": true }'>
+	<% console.log(catalog) %>
+	<% catalog.forEach((record) => { %>
+		<div class="grid-item p-1">
+			<img class="record" src="<%= record.img %>" class="card-img-top rounded-1" alt="<%= record.artistname +" - "+ record.recordname %>">
+			<p class="card-footer"><%= record.artistname + " - " + record.recordname %></p>
+		</div>
+	<% }); %>
+</div>
+
+<%- include("footer") -%>
