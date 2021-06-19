@@ -1,8 +1,6 @@
 import { VinylistStorageService } from "./storageservice.js"
 
 export class VinylistCatalogService {
-	storageService;
-
 	constructor() {
 		this.storageService = new VinylistStorageService();
 	}

@@ -2,8 +2,6 @@ import sqlite3 from "sqlite3"
 import { open } from "sqlite"
 
 export class VinylistStorageService {
-	db;
-
 	async getAll() {
 		this.db = await open({
 			filename: './data/vinylist.db',

@@ -2,10 +2,8 @@ import express from "express";
 import { VinylistCatalogService } from "./services/catalogservice.js"
 
 class Vinylist {
-	port = 8080;
-	express;
-
 	constructor() {
+		this.port = 8080;
 		this.express = express();
 		this.express.set("views", "./views");
 		this.express.set("view engine", "ejs");
@@ -24,4 +22,4 @@ class Vinylist {
 	}
 }
 
-let vinylist = await new Vinylist().start();
+new Vinylist().start();
