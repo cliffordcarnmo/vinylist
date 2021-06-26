@@ -5,16 +5,11 @@ export class VinylistArtistService {
 		this.storageService = new VinylistStorageService();
 	}
 
-	async getArtist(artistid) {
-		return await this.storageService.getArtist(artistid).then(result => {
-			return result;
-		});
+	async getArtist(artistId) {
+		return await this.storageService.getArtist(artistId);
 	}
 
 	async getArtists() {
-		return await this.storageService.getArtists().then(result => {
-			return result;
-		});
+		return await this.storageService.getArtists();
 	}
-
 }

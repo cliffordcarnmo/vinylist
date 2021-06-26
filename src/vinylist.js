@@ -1,4 +1,5 @@
 import express from "express";
+import { VinylistRecordService } from "./services/recordservice.js";
 import { VinylistCatalogService } from "./services/catalogservice.js"
 
 class Vinylist {
@@ -10,14 +11,16 @@ class Vinylist {
 	}
 
 	async start() {
-		this.express.listen(this.port, () => {
-			console.log("Vinylist running at port " + this.port);
+		this.express.listen(this.port);
+
+		this.express.get("/", async (request, response) => {
+			let result = await new VinylistCatalogService().getCatalog();
+			response.render("home", { catalog: result });
 		});
 
-		this.express.get("/", (req, res) => {
-			new VinylistCatalogService().getCatalog().then(result => {
-				res.render("home", { catalog: result });
-			});
+		this.express.get("/record/:recordId", async (request, response) => {
+			let result = await new VinylistRecordService().getRecord(request.params.recordId);
+			response.render("record", { record: result });
 		});
 	}
 }

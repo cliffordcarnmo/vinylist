@@ -5,21 +5,11 @@ export class VinylistRecordService {
 		this.storageService = new VinylistStorageService();
 	}
 
-	async getArtistRecords(artistid) {
-		return await this.storageService.getArtistRecords(artistid).then(result => {
-			return result;
-		});
+	async getRecord(recordId) {
+		return await this.storageService.getRecord(recordId);
 	}
 
-	async getRecord(recordid) {
-		return await this.storageService.getRecord(recordid).then(result => {
-			return result;
-		});
-	}
-
-	async getRecords() {
-		return await this.storageService.getRecords().then(result => {
-			return result;
-		});
+	async getArtistRecords(artistId) {
+		return await this.storageService.getArtistRecords(artistId);
 	}
 }
