@@ -1,0 +1,11 @@
+<%- include("header") -%>
+
+<table class="table">
+<tbody>
+<% records.forEach((record) => { %>
+	<tr><td><a href="/record/<%= record.id %>"><%= record.recordname %></a></td></tr>
+<% }); %>
+</tbody>
+</table>
+
+<%- include("footer") -%>

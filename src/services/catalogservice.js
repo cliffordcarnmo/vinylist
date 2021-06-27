@@ -6,6 +6,6 @@ export class VinylistCatalogService {
 	}
 
 	async getCatalog() {
-		return await this.storageService.getAll();
+		return await this.storageService.getCatalog();
 	}
 }

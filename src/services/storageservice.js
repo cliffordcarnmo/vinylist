@@ -13,19 +13,35 @@ export class VinylistStorageService {
 		await this.db.close();
 	}
 
-	async getRecord(recordId) {
+	async executeStatement(query, parameters = {}) {
 		await this.openStorage();
-		let result = await this.db.get("select * from artists a, records r where r.artistid = a.id and r.id = ? order by a.artistname asc, r.recordname asc", recordId);
-		console.log(result);
+
+		let statement = await this.db.prepare(query);
+		await statement.bind(parameters);
+		let result = await statement.all();
+		await statement.finalize();
 
 		await this.closeStorage();
 		return result;
 	}
 
-	async getAll() {
-		await this.openStorage();
-		let result = await this.db.all("select * from artists a, records r where r.artistid = a.id order by a.artistname asc, r.recordname asc");
-		await this.closeStorage();
-		return result;
+	async getArtist(artistId) {
+		return await this.executeStatement("select * from artists where id = @artistId", { "@artistId": artistId });
+	}
+
+	async getArtists() {
+		return await this.executeStatement("select * from artists order by artistname asc");
+	}
+
+	async getRecord(recordId) {
+		return await this.executeStatement("select * from artists a, records r where r.artistid = a.id and r.id = @recordId", { "@recordId": recordId });
+	}
+
+	async getRecords() {
+		return await this.executeStatement("select * from records order by recordname asc");
+	}
+
+	async getCatalog() {
+		return await this.executeStatement("select * from artists a, records r where r.artistid = a.id order by a.artistname asc, r.recordname asc");
 	}
 }
