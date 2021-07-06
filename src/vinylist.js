@@ -1,7 +1,7 @@
 import express from "express";
-import { VinylistRecordService } from "./services/recordservice.js";
 import { VinylistCatalogService } from "./services/catalogservice.js"
 import { VinylistArtistService } from "./services/artistservice.js"
+import { VinylistRecordService } from "./services/recordservice.js";
 
 class Vinylist {
 	constructor() {
